@@ -1,0 +1,12 @@
+{
+  "name": "paint",
+  "version": "1.0.0",
+  "description": "A web painting app",
+  "main": "paint.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "node-sass style.scss style.css -w"
+  },
+  "author": "Huy Chau",
+  "license": "ISC"
+}

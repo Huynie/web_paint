@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="canvasLayers">
+      <div class="canvasContainer">
+        <canvas
+          id="canvas1"
+          class="selectedCanvas"
+          width="500"
+          height="500"
+        ></canvas>
+      </div>
+      <div class="layerPanel">
+        <div class="layerPanel__layerList">
+          <div class="layerPanel__layers selected" id="1">
+            layer 1
+            <input type="checkbox" class="showHide" />
+          </div>
+        </div>
+        <div class="layerPanel__buttons">
+          <button class="clear">clear</button>
+          <button class="addLayer">new layer</button>
+        </div>
+      </div>
+    </div>
+    <div id="swatches">
+      <div class="color"></div>
+      <div class="sliders">
+        <label id="hue" for="hue"></label>
+        <input class="hue" type="range" min="0" max="360" value="0" step="1" />
+        <label id="saturation" for="saturation"></label>
+        <input
+          id="sliders"
+          class="saturation"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          step="1"
+        />
+        <label id="brightness" for="brightness"></label>
+        <input
+          id="sliders"
+          class="brightness"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          step="1"
+        />
+        Brush Size:
+        <label id="brushSize" for="brushSize"></label>
+        <input
+          id="sliders"
+          class="brushSize"
+          type="range"
+          min="1"
+          max="100"
+          value="1"
+          step="1"
+        />
+      </div>
+    </div>
+  </body>
+  <script src="./paint.js"></script>
+</html>

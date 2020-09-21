@@ -1,0 +1,92 @@
+#swatches {
+  /* display: flex; */
+  max-width: 250px;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  /* background-color: green; */
+  /* SLIDER HANDLE */ }
+  #swatches .sliders {
+    /* display: flex; */
+    /* height: 100%;
+    width: 100%; */
+    /* transform: rotate(270deg); */ }
+  #swatches input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    width: 100%;
+    height: 25px;
+    /* background: gray; */
+    opacity: 0.7;
+    transition: opacity 0.2s; }
+  #swatches input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 30px;
+    background: green;
+    cursor: pointer; }
+  #swatches .hue {
+    background: linear-gradient(to right, red 0%, #ff8000 8.3%, yellow 16.6%, #80ff00 25%, lime 33.3%, #00ff80 41.6%, cyan 50%, #0080ff 58.3%, blue 66.6%, #8000ff 75%, magenta 83.3%, #ff0080 91.6%, red 100%); }
+  #swatches .saturation {
+    background: linear-gradient(to right, black, black); }
+  #swatches .brightness {
+    background: linear-gradient(to right, black, white); }
+  #swatches .brushSize {
+    background: gray;
+    height: 100px;
+    width: 25px; }
+  #swatches .color {
+    margin: 50px;
+    width: 100px;
+    height: 100px;
+    background: black; }
+
+.canvasLayers {
+  width: 750px;
+  height: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex; }
+  .canvasLayers .canvasContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0; }
+    .canvasLayers .canvasContainer > canvas {
+      position: absolute;
+      top: 0;
+      border: 1px solid black;
+      width: 500px;
+      height: 500px;
+      pointer-events: none; }
+  .canvasLayers .layerPanel {
+    width: 50%;
+    /* height: 100%; */
+    /*     max-height: 80vh; */
+    background: gray;
+    position: relative;
+    top: 0; }
+    .canvasLayers .layerPanel__layerList {
+      overflow-y: scroll;
+      height: 100%; }
+    .canvasLayers .layerPanel__layers {
+      background: #bebebe;
+      height: 50px;
+      width: 100%;
+      z-index: 1; }
+    .canvasLayers .layerPanel__buttons {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: green; }
+  .canvasLayers .selected {
+    background: green;
+    z-index: 999; }
+  .canvasLayers .selectedCanvas {
+    /* pointer-events: all; */
+    /* background: pink; */
+    /* z-index: 999; */ }
