@@ -27,6 +27,7 @@ Sliders.forEach((slider, idx) => {
     label[idx].innerHTML = slider.value;
     //update brush size
     brushSize = brush.value;
+    document.querySelector("#brushSize").innerHTML = `${brush.value}px`;
     //update brush color
     color = `hsl(${hue.value}, ${saturation.value}%, ${brightness.value}%)`;
     CurrentColor.style.backgroundColor = color;
@@ -79,10 +80,8 @@ const showHide = document.querySelector(".showHide");
 showHide.oninput = function () {
   if (showHide.checked === true) {
     firstCanvas.style.visibility = "hidden";
-    console.log("checked");
   } else {
     firstCanvas.style.visibility = "visible";
-    console.log("unchecked");
   }
 };
 
@@ -110,7 +109,7 @@ document.querySelector(".addLayer").onclick = function addLayer() {
   addLayer.classList.add("layerPanel__layers");
   layerPanel.prepend(addLayer);
   const layers = document.querySelectorAll(".layerPanel__layers");
-  addLayer.innerHTML = `layer ${layers.length}`;
+  /* addLayer.innerHTML = `Layer ${layers.length}`; */
   addLayer.setAttribute("id", `${layers.length}`);
 
   //ADD VISIBILITY TOGGLE TO NEW LAYER
@@ -118,6 +117,11 @@ document.querySelector(".addLayer").onclick = function addLayer() {
   addToggle.classList.add("showHide");
   addToggle.type = "checkbox";
   addLayer.appendChild(addToggle);
+
+  //ADD LAYER NAME
+  const addLayerName = document.createElement("p");
+  addLayerName.innerHTML = `Layer ${layers.length}`;
+  addLayer.appendChild(addLayerName);
 
   layers.forEach((layer) => {
     //SELECTING LAYERS

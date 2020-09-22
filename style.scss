@@ -1,37 +1,72 @@
+body {
+  overflow: hidden;
+}
+::-webkit-scrollbar {
+  width: 15px;
+
+  &-track {
+    background: rgb(133, 133, 133);
+  }
+  &-thumb {
+    background: rgb(173, 173, 173);
+
+    &:hover {
+      background: rgb(206, 206, 206);
+    }
+  }
+}
+
 #swatches {
-  /* display: flex; */
   max-width: 250px;
   height: 100vh;
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  /* background-color: green; */
+  background-color: rgb(182, 182, 182);
+  z-index: 1000;
   .sliders {
-    /* display: flex; */
-    /* height: 100%;
-    width: 100%; */
-    /* transform: rotate(270deg); */
+    display: grid;
+    grid-template-rows: 10% 90% 10% 90%;
+    grid-template-columns: 50% 50%;
+    grid-row-gap: 20px;
+    justify-items: center;
+    align-items: center;
+    width: 150px;
+    margin: 0 auto;
   }
   input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
     outline: none;
-    width: 100%;
-    height: 25px;
+    width: 200px;
+    height: 30px;
     /* background: gray; */
     opacity: 0.7;
     transition: opacity 0.2s;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+    margin: 10px;
   }
   /* SLIDER HANDLE */
   input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     width: 20px;
-    height: 30px;
-    background: green;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.486);
+    border: 2px solid white;
     cursor: pointer;
   }
+  label {
+    margin-top: 10px;
+  }
+  #hue {
+    grid-row: 1/2;
+    grid-column: 1/2;
+  }
   .hue {
+    grid-column: 1/2;
+    grid-row: 2/3;
     background: linear-gradient(
       to right,
       hsl(0, 100%, 50%) 0%,
@@ -49,13 +84,31 @@
       hsl(360, 100%, 50%) 100%
     );
   }
+  #saturation {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
   .saturation {
+    grid-column: 2/3;
+    grid-row: 2/3;
     background: linear-gradient(to right, hsl(0, 0%, 0%), hsl(0, 0%, 0%));
   }
+  #brightness {
+    grid-column: 1/2;
+    grid-row: 3/4;
+  }
   .brightness {
+    grid-column: 1/2;
+    grid-row: 4/5;
     background: linear-gradient(to right, hsl(0, 0%, 0%), hsl(0, 100%, 100%));
   }
+  #brushSize {
+    grid-column: 2/3;
+    grid-row: 3/4;
+  }
   .brushSize {
+    grid-column: 2/3;
+    grid-row: 4/5;
     background: gray;
     height: 100px;
     width: 25px;
@@ -69,10 +122,9 @@
 }
 
 .canvasLayers {
-  width: 750px;
+  width: 500px;
   height: 500px;
   margin: 0 auto;
-  padding: 20px;
   display: flex;
 
   .canvasContainer {
@@ -80,6 +132,7 @@
     height: 100%;
     position: relative;
     top: 0;
+    background: url(./checker.png), repeat;
 
     & > canvas {
       position: absolute;
@@ -90,40 +143,70 @@
       pointer-events: none;
     }
   }
+}
+.layerPanel {
+  width: 250px;
+  /* height: 100%; */
+  /*     max-height: 80vh; */
+  background: rgb(112, 112, 112);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
 
-  .layerPanel {
-    width: 50%;
-    /* height: 100%; */
-    /*     max-height: 80vh; */
-    background: gray;
-    position: relative;
-    top: 0;
+  &__layerList {
+    overflow-y: scroll;
+    height: 98%;
+  }
+  &__layers {
+    background: rgb(146, 146, 146);
+    height: 70px;
+    width: 100%;
+    z-index: 1;
+    border: 1px solid rgb(136, 136, 136);
+    display: flex;
+    align-items: center;
 
-    &__layerList {
-      overflow-y: scroll;
-      height: 100%;
+    & > input {
+      margin: 0 15px;
+      width: 20px;
+      height: 20px;
     }
-    &__layers {
-      background: rgb(190, 190, 190);
-      height: 50px;
-      width: 100%;
-      z-index: 1;
-    }
-    &__buttons {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: green;
+    p {
+      font: normal normal 500 14px Roboto;
+      letter-spacing: 0.2em;
+      color: rgb(83, 83, 83);
+      margin: 10px;
     }
   }
-  .selected {
-    background: green;
-    z-index: 999;
+  &__buttons {
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgb(199, 199, 199);
+
+    button {
+      border: 1px solid rgb(224, 224, 224);
+      background: transparent;
+      height: 30px;
+      margin: 10px;
+      &:hover {
+        background: rgb(216, 216, 216);
+      }
+    }
   }
-  .selectedCanvas {
-    /* pointer-events: all; */
-    /* background: pink; */
-    /* z-index: 999; */
+}
+.selected {
+  background: rgb(189, 189, 189);
+  z-index: 999;
+  p {
+    color: rgb(255, 255, 255);
   }
+}
+.selectedCanvas {
+  /* pointer-events: all; */
+  background: transparent;
+  /* z-index: 999; */
 }
