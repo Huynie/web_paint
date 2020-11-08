@@ -1,3 +1,5 @@
+import dragElement from "./draggable.js";
+
 const firstCanvas = document.querySelector("#canvas1");
 /* const firstSelected = document.querySelector(".selectedCanvas"); */
 const contextFirst = firstCanvas.getContext("2d");
@@ -39,18 +41,22 @@ Sliders.forEach((slider, idx) => {
   };
 });
 
-//drawing component
+//drawing function
 const draw = (context, x1, y1, x2, y2) => {
   context.strokeStyle = color;
   context.lineWidth = brushSize;
   context.lineCap = "round";
+  //brush opacity
+  // context.globalAlpha = 0.3;
   context.beginPath();
   context.moveTo(x1, y1);
   context.lineTo(x2, y2);
   context.stroke();
-  context.closePath();
+  /* context.closePath(); */
+  
 };
 //Enable drawing function on first layer
+//Might have to change this due to first stroke on any layer is on first layer
 firstCanvas.style.pointerEvents = "all";
 firstCanvas.addEventListener("mousedown", (e) => {
   x = e.offsetX;
@@ -68,9 +74,6 @@ firstCanvas.addEventListener("mousemove", (e) => {
 
 window.addEventListener("mouseup", (e) => {
   if (isDrawing === true) {
-    draw(contextFirst, x, y, e.offsetX, e.offsetY);
-    x = 0;
-    y = 0;
     isDrawing = false;
   }
 });
@@ -124,6 +127,8 @@ document.querySelector(".addLayer").onclick = function addLayer() {
   addLayer.appendChild(addLayerName);
 
   layers.forEach((layer) => {
+    //MAKE EACH LAYER DRAGGABLE
+    /* dragElement(layer); */
     //SELECTING LAYERS
     layer.addEventListener("click", (e) => {
       if (e.target.tagName === "DIV") {
@@ -141,9 +146,10 @@ document.querySelector(".addLayer").onclick = function addLayer() {
         targetCanvas.style.pointerEvents = "all";
 
         const selectedCanvas = document.querySelector(".selectedCanvas");
-
+        // SET DRAWING FUNCTION TO SELECTED CANVAS
         const context = selectedCanvas.getContext("2d");
         selectedCanvas.addEventListener("mousedown", (e) => {
+          /* draw(context, x, y, e.offsetX, e.offsetY); */
           x = e.offsetX;
           y = e.offsetY;
           isDrawing = true;
@@ -159,9 +165,6 @@ document.querySelector(".addLayer").onclick = function addLayer() {
 
         window.addEventListener("mouseup", (e) => {
           if (isDrawing === true) {
-            draw(context, x, y, e.offsetX, e.offsetY);
-            x = 0;
-            y = 0;
             isDrawing = false;
           }
         });
