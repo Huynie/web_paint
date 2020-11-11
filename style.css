@@ -145,16 +145,21 @@ body {
     /* z-index: 999; */ }
 
 .canvasLayers {
-  width: max-content;
-  height: max-content;
+  width: 500px;
+  height: 500px;
   margin: 0 auto;
+  display: flex;
   /* position: absolute; */
   background: navy; }
   .canvasLayers .canvasContainer {
-    width: 100%;
-    height: 100%;
+    width: 500px;
+    height: 500px;
+    position: relative;
+    top: 0;
     background: url(./checker.png), repeat; }
     .canvasLayers .canvasContainer > canvas {
+      position: absolute;
+      top: 0;
       border: 1px solid black;
       width: 500px;
       height: 500px;
@@ -184,6 +189,12 @@ body {
         z-index: 2; }
       .menu .layerPanel__buttons {
         left: 50%; }
-  .canvasLayers .canvasContainer > canvas {
+  .canvasLayers {
     width: 95vw;
-    height: 70vh; } }
+    height: 70vh; }
+    .canvasLayers .canvasContainer {
+      width: 95vw;
+      height: 70vh; }
+      .canvasLayers .canvasContainer > canvas {
+        width: 95vw;
+        height: 70vh; } }
