@@ -41,7 +41,7 @@ Sliders.forEach((slider, idx) => {
   };
 });
 
-dragElement(document.getElementsByClassName('canvasLayer'));
+/* dragElement(document.querySelector('.canvasLayers')); */
 
 //drawing function
 const draw = (context, x1, y1, x2, y2) => {

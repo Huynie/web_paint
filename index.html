@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <div class="canvasLayers">
+      <div class="canvasContainer">
+        <canvas
+          id="canvas1"
+          class="selectedCanvas"
+          width="500"
+          height="500"
+        ></canvas>
+      </div>
+    </div>
     <div class="menu">
       <div id="swatches">
         <div class="color"></div>
@@ -62,16 +72,7 @@
         </div>
       </div>
     </div>
-    <div class="canvasLayers">
-      <div class="canvasContainer">
-        <canvas
-          id="canvas1"
-          class="selectedCanvas"
-          width="500"
-          height="500"
-        ></canvas>
-      </div>
-    </div>
+    
   </body>
   <script src="./paint.js" type="module"></script>
   <script src="./draggable.js" type="module"></script>

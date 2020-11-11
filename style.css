@@ -95,10 +95,7 @@ body {
   .menu .layerPanel {
     width: 100%;
     height: 100%;
-    /*     max-height: 80vh; */
     background: #707070;
-    /* position: relative; */
-    /* top: 0; */
     left: 0;
     bottom: 0; }
     .menu .layerPanel__layerList {
@@ -148,27 +145,45 @@ body {
     /* z-index: 999; */ }
 
 .canvasLayers {
-  width: 500px;
-  height: 500px;
+  width: max-content;
+  height: max-content;
   margin: 0 auto;
-  display: flex;
-  /* position: absolute; */ }
+  /* position: absolute; */
+  background: navy; }
   .canvasLayers .canvasContainer {
     width: 100%;
     height: 100%;
-    position: relative;
-    top: 0;
     background: url(./checker.png), repeat; }
     .canvasLayers .canvasContainer > canvas {
-      position: absolute;
-      top: 0;
       border: 1px solid black;
       width: 500px;
       height: 500px;
       pointer-events: none; }
 
 @media only screen and (max-width: 600px) {
+  /*  * {
+    overflow-y: scroll;
+  } */
   .menu {
+    position: relative;
     right: 0;
     top: auto;
-    display: flex; } }
+    display: flex;
+    height: 30vh; }
+    .menu #swatches {
+      width: 50%;
+      height: 100%; }
+      .menu #swatches .sliders input[type="range"] {
+        width: 70%; }
+    .menu .layerPanel {
+      width: 50%; }
+      .menu .layerPanel__layerList {
+        max-height: calc(100% - 50px);
+        z-index: 1; }
+      .menu .layerPanel__layers {
+        z-index: 2; }
+      .menu .layerPanel__buttons {
+        left: 50%; }
+  .canvasLayers .canvasContainer > canvas {
+    width: 95vw;
+    height: 70vh; } }

@@ -131,10 +131,7 @@ body {
   .layerPanel {
     width: 100%;
     height: 100%;
-    /*     max-height: 80vh; */
     background: rgb(112, 112, 112);
-    /* position: relative; */
-    /* top: 0; */
     left: 0;
     bottom: 0;
 
@@ -199,22 +196,18 @@ body {
 }
 
 .canvasLayers {
-  width: 500px;
-  height: 500px;
+  width: max-content;
+  height: max-content;
   margin: 0 auto;
-  display: flex;
   /* position: absolute; */
+  background: navy;
 
   .canvasContainer {
     width: 100%;
     height: 100%;
-    position: relative;
-    top: 0;
     background: url(./checker.png), repeat;
 
     & > canvas {
-      position: absolute;
-      top: 0;
       border: 1px solid black;
       width: 500px;
       height: 500px;
@@ -224,9 +217,48 @@ body {
 }
 
 @media only screen and(max-width: 600px) {
+  /*  * {
+    overflow-y: scroll;
+  } */
   .menu {
+    position: relative;
     right: 0;
     top: auto;
     display: flex;
+    height: 30vh;
+
+    #swatches {
+      width: 50%;
+      height: 100%;
+      .sliders {
+        input[type="range"] {
+          width: 70%;
+        }
+      }
+    }
+
+    .layerPanel {
+      width: 50%;
+
+      &__layerList {
+        max-height: calc(100% - 50px);
+        z-index: 1;
+      }
+      &__layers {
+        z-index: 2;
+      }
+
+      &__buttons {
+        left: 50%;
+      }
+    }
+  }
+  .canvasLayers {
+    .canvasContainer {
+      & > canvas {
+        width: 95vw;
+        height: 70vh;
+      }
+    }
   }
 }
