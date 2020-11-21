@@ -66,6 +66,7 @@ body {
     }
     label {
       margin-top: 10px;
+      width: 0px;
     }
     #hue {
       grid-row: 1/2;
@@ -175,8 +176,12 @@ body {
         background: transparent;
         height: 30px;
         margin: 10px;
+        outline: none;
         &:hover {
           background: rgb(216, 216, 216);
+        }
+        &:active {
+          background: rgb(194, 194, 194);
         }
       }
     }
@@ -236,6 +241,8 @@ body {
       width: 50%;
       height: 100%;
       .sliders {
+        transform: rotate(-90deg);
+
         input[type="range"] {
           width: 70%;
         }

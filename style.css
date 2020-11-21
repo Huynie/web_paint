@@ -55,7 +55,8 @@ body {
       border: 2px solid white;
       cursor: pointer; }
     .menu #swatches label {
-      margin-top: 10px; }
+      margin-top: 10px;
+      width: 0px; }
     .menu #swatches #hue {
       grid-row: 1/2;
       grid-column: 1/2; }
@@ -131,9 +132,12 @@ body {
         border: 1px solid #e0e0e0;
         background: transparent;
         height: 30px;
-        margin: 10px; }
+        margin: 10px;
+        outline: none; }
         .menu .layerPanel__buttons button:hover {
           background: #d8d8d8; }
+        .menu .layerPanel__buttons button:active {
+          background: #c2c2c2; }
   .menu .selected {
     background: #bdbdbd;
     z-index: 999; }
@@ -178,8 +182,10 @@ body {
     .menu #swatches {
       width: 50%;
       height: 100%; }
-      .menu #swatches .sliders input[type="range"] {
-        width: 70%; }
+      .menu #swatches .sliders {
+        transform: rotate(-90deg); }
+        .menu #swatches .sliders input[type="range"] {
+          width: 70%; }
     .menu .layerPanel {
       width: 50%; }
       .menu .layerPanel__layerList {

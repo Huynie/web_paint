@@ -96,6 +96,17 @@ document.querySelector(".clear").onclick = function clear() {
   const clearContext = selectedCanvas.getContext("2d");
   clearContext.clearRect(0, 0, selectedCanvas.width, selectedCanvas.height);
 };
+//DELETE LAYER
+document.querySelector('.deleteLayer').onclick = function deleteLayer() {
+  const selectedCanvas = document.querySelector(".selectedCanvas");
+  const selectedLayer = document.querySelector(".selected");
+  const newSelectedCanvas = selectedCanvas.previousElementSibling;
+  const newSelectedLayer = selectedLayer.previousElementSibling;
+  selectedCanvas.remove();
+  selectedLayer.remove();
+  newSelectedCanvas.classList.add('selectedCanvas');
+  newSelectedLayer.classList.add('selected');
+}
 
 //create layer and add event listener to them
 document.querySelector(".addLayer").onclick = function addLayer() {
