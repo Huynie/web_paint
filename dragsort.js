@@ -1,4 +1,4 @@
-// try threshold observer?S
+// try sectional observer?S
 // sort canvas
 const selectedLayer = document.querySelector('.selected');
 const selectedCanvas = document.querySelector('.selectedCanvas');
@@ -82,8 +82,13 @@ const dragSort = () => {
         
     })
 }
+const cleanUpListeners = (selectedLayer) => {
+    selectedLayer.removeEventListener('dragstart', dragOver);
+    selectedLayer.removeEventListener('dragstart', dragLeave);
+    selectedLayer.removeEventListener('dragstart', dragEnd);
+}
 
-export {dragSort};
+export {dragSort, cleanUpListeners};
 // if ( afterElement == null || afterElement == undefined){
     //     indicatorBottom(indicator);
     // }else{

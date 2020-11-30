@@ -1,5 +1,5 @@
 import dragElement from "./draggable.js";
-import  { dragSort} from "./dragsort.js";
+import  { dragSort, cleanUpListeners} from "./dragsort.js";
 
 const firstCanvas = document.querySelector("#canvas1");
 /* const firstSelected = document.querySelector(".selectedCanvas"); */
@@ -106,23 +106,21 @@ document.querySelector('.deleteLayer').onclick = function deleteLayer() {
   const nextCanvas = currentCanvas.nextElementSibling;
   const nextLayer = currentLayer.nextElementSibling;
 
-  currentLayer.removeEventListener('dragover', dragOver);
+  cleanUpListeners(currentLayer);
   //select next bottom layer before deleting current layer
   //else, select previous upper layer
   if(nextLayer) {
-    nextLayer.classList.add('selectedCanvas') 
+    nextLayer.classList.add('selected') 
   } else {
-    prevLayer.classList.add('selectedCanvas');
+    prevLayer.classList.add('selected');
   }
   if(nextCanvas) {
     nextCanvas.classList.add('selectedCanvas') 
   } else {
     prevCanvas.classList.add('selectedCanvas');
   }
-  // newSelectedLayer.removeEventListener('dragstart', drag);
   currentCanvas.remove();
   currentLayer.remove();
-  
 };
 //create layer and add event listener to them
 document.querySelector(".addLayer").onclick = function addLayer() {
