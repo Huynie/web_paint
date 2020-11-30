@@ -1,4 +1,5 @@
 import dragElement from "./draggable.js";
+import  { dragSort} from "./dragsort.js";
 
 const firstCanvas = document.querySelector("#canvas1");
 /* const firstSelected = document.querySelector(".selectedCanvas"); */
@@ -98,16 +99,31 @@ document.querySelector(".clear").onclick = function clear() {
 };
 //DELETE LAYER
 document.querySelector('.deleteLayer').onclick = function deleteLayer() {
-  const selectedCanvas = document.querySelector(".selectedCanvas");
-  const selectedLayer = document.querySelector(".selected");
-  const newSelectedCanvas = selectedCanvas.previousElementSibling;
-  const newSelectedLayer = selectedLayer.previousElementSibling;
-  selectedCanvas.remove();
-  selectedLayer.remove();
-  newSelectedCanvas.classList.add('selectedCanvas');
-  newSelectedLayer.classList.add('selected');
-}
+  const currentCanvas = document.querySelector(".selectedCanvas");
+  const currentLayer = document.querySelector(".selected");
+  const prevCanvas = currentCanvas.previousElementSibling;
+  const prevLayer = currentLayer.previousElementSibling;
+  const nextCanvas = currentCanvas.nextElementSibling;
+  const nextLayer = currentLayer.nextElementSibling;
 
+  currentLayer.removeEventListener('dragover', dragOver);
+  //select next bottom layer before deleting current layer
+  //else, select previous upper layer
+  if(nextLayer) {
+    nextLayer.classList.add('selectedCanvas') 
+  } else {
+    prevLayer.classList.add('selectedCanvas');
+  }
+  if(nextCanvas) {
+    nextCanvas.classList.add('selectedCanvas') 
+  } else {
+    prevCanvas.classList.add('selectedCanvas');
+  }
+  // newSelectedLayer.removeEventListener('dragstart', drag);
+  currentCanvas.remove();
+  currentLayer.remove();
+  
+};
 //create layer and add event listener to them
 document.querySelector(".addLayer").onclick = function addLayer() {
   //ADD NEW CANVAS
@@ -127,6 +143,7 @@ document.querySelector(".addLayer").onclick = function addLayer() {
   const layers = document.querySelectorAll(".layerPanel__layers");
   /* addLayer.innerHTML = `Layer ${layers.length}`; */
   addLayer.setAttribute("id", `${layers.length}`);
+  addLayer.draggable = true;
 
   //ADD VISIBILITY TOGGLE TO NEW LAYER
   const addToggle = document.createElement("input");
@@ -150,7 +167,6 @@ document.querySelector(".addLayer").onclick = function addLayer() {
         currentLayer.classList.remove("selected");
         currentCanvas.classList.remove("selectedCanvas");
         e.target.classList.add("selected");
-        console.log(e.target.parentNode.id);
         const layerId = e.target.id;
         const targetCanvas = document.querySelector(`#canvas${layerId}`);
         targetCanvas.classList.add("selectedCanvas");
@@ -194,31 +210,5 @@ document.querySelector(".addLayer").onclick = function addLayer() {
       };
     });
   });
-
-  //ENABLE DRAWING FUNCTION
-  /* for (idx = 0; idx < canvas.length; idx++) {
-    const context = canvas[idx].getContext("2d");
-    canvas[idx].addEventListener("mousedown", (e) => {
-      x = e.offsetX;
-      y = e.offsetY;
-      isDrawing = true;
-    });
-
-    canvas[idx].addEventListener("mousemove", (e) => {
-      if (isDrawing === true) {
-        draw(context, x, y, e.offsetX, e.offsetY);
-        x = e.offsetX;
-        y = e.offsetY;
-      }
-    });
-
-    window.addEventListener("mouseup", (e) => {
-      if (isDrawing === true) {
-        draw(context, x, y, e.offsetX, e.offsetY);
-        x = 0;
-        y = 0;
-        isDrawing = false;
-      }
-    });
-  } */
+  dragSort();
 };

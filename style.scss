@@ -135,7 +135,9 @@ body {
     background: rgb(112, 112, 112);
     left: 0;
     bottom: 0;
-
+    .dragging {
+      opacity: 0.3;
+    }
     &__layerList {
       overflow-y: scroll;
       overflow-x: hidden;
@@ -162,6 +164,11 @@ body {
         color: rgb(83, 83, 83);
         margin: 10px;
       }
+    }
+    &__indicator {
+      background-color: rgb(0, 189, 246);
+      height: 1px;
+      pointer-events: none;
     }
     &__buttons {
       height: 50px;

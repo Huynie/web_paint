@@ -99,6 +99,8 @@ body {
     background: #707070;
     left: 0;
     bottom: 0; }
+    .menu .layerPanel .dragging {
+      opacity: 0.3; }
     .menu .layerPanel__layerList {
       overflow-y: scroll;
       overflow-x: hidden;
@@ -121,6 +123,10 @@ body {
         letter-spacing: 0.2em;
         color: #535353;
         margin: 10px; }
+    .menu .layerPanel__indicator {
+      background-color: #00bdf6;
+      height: 1px;
+      pointer-events: none; }
     .menu .layerPanel__buttons {
       height: 50px;
       position: absolute;
