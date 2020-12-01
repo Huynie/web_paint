@@ -1,7 +1,4 @@
-// try sectional observer?S
-// sort canvas
-const selectedLayer = document.querySelector('.selected');
-const selectedCanvas = document.querySelector('.selectedCanvas');
+const canvasContainer = document.querySelector('.canvasContainer');
 const layerContainer = document.querySelector('.layerPanel__layerList');
 var toggle = false;
 
@@ -30,17 +27,23 @@ const dragLeave = (e)=> {
 const dragEnd = (e) => {
     const afterElement = getDragAfterElement(e.clientY);
     const dragging = document.querySelector('.dragging');
-    //add layer to new position
-    if (afterElement == null || afterElement == undefined){
-            layerContainer.appendChild(dragging);
-    } else {
-        layerContainer.insertBefore(dragging, afterElement);
-    }
+    const sortedCanvas = document.getElementById(`canvas${dragging.id}`);
     dragging.classList.remove('dragging');
     removeIndicator();
     toggle = false;
+    //add layer and canvas to new position
+    if (afterElement == null || afterElement == undefined){
+            layerContainer.appendChild(dragging);
+            canvasContainer.prepend(sortedCanvas);
+    } else {
+        const afterSortedCanvas = document.getElementById(`canvas${afterElement.id}`).nextSibling;
+        layerContainer.insertBefore(dragging, afterElement);
+        canvasContainer.insertBefore(sortedCanvas, afterSortedCanvas);
+    }
+    
 }
 
+//get element after cursor while dragging
 const getDragAfterElement = ( y) => {
     // grab all layers that isn't 'dragging'
     const draggableElements = 
@@ -89,35 +92,3 @@ const cleanUpListeners = (selectedLayer) => {
 }
 
 export {dragSort, cleanUpListeners};
-// if ( afterElement == null || afterElement == undefined){
-    //     indicatorBottom(indicator);
-    // }else{
-    //     indicatorTop(indicator, afterElement);
-    // }
-// function indicatorBottom (indicator){
-//     const topIndicator = document.getElementById('top');
-//     if (topIndicator){
-//         topIndicator.remove();
-//     }
-//     indicatorBottom = function (){};
-//     indicator.setAttribute('id', 'bottom');
-//     layerContainer.appendChild(indicator);
-// }
-// function indicatorTop (indicator, afterElement){
-//     const bottomIndicator = document.getElementById('bottom');
-//     if (bottomIndicator){
-//         bottomIndicator.remove();
-//     }
-//     indicatorTop = function (){};
-//     indicator.setAttribute('id', 'top');
-//     layerContainer.insertBefore(indicator, afterElement);
-// }
-
-// const bottomIndicator = document.getElementById('bottom');
-//     const topIndicator = document.getElementById('top');
-//     if (bottomIndicator){
-//         bottomIndicator.remove();
-
-//     } else if (topIndicator) {
-//         topIndicator.remove();
-//     }

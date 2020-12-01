@@ -59,7 +59,6 @@ const draw = (context, x1, y1, x2, y2) => {
   
 };
 //Enable drawing function on first layer
-//Might have to change this due to first stroke on any layer is on first layer
 firstCanvas.style.pointerEvents = "all";
 firstCanvas.addEventListener("mousedown", (e) => {
   x = e.offsetX;
