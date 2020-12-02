@@ -16,6 +16,7 @@ let x = 0;
 let y = 0;
 let color = "black";
 let brushSize = 1;
+let layerNumber = 1;
 //change color when clicked
 /* swatches.addEventListener("click", (e) => {
   const style = getComputedStyle(swatches);
@@ -59,7 +60,6 @@ const draw = (context, x1, y1, x2, y2) => {
   
 };
 //Enable drawing function on first layer
-firstCanvas.style.pointerEvents = "all";
 firstCanvas.addEventListener("mousedown", (e) => {
   x = e.offsetX;
   y = e.offsetY;
@@ -109,26 +109,23 @@ document.querySelector('.deleteLayer').onclick = function deleteLayer() {
   //select next bottom layer before deleting current layer
   //else, select previous upper layer
   if(nextLayer) {
-    nextLayer.classList.add('selected') 
+    nextLayer.classList.add('selected');
+    prevCanvas.classList.add('selectedCanvas');
   } else {
     prevLayer.classList.add('selected');
-  }
-  if(nextCanvas) {
-    nextCanvas.classList.add('selectedCanvas') 
-  } else {
-    prevCanvas.classList.add('selectedCanvas');
+    nextCanvas.classList.add('selectedCanvas');
   }
   currentCanvas.remove();
   currentLayer.remove();
 };
 //create layer and add event listener to them
 document.querySelector(".addLayer").onclick = function addLayer() {
+  layerNumber++;
   //ADD NEW CANVAS
   const canvasContainer = document.querySelector(".canvasContainer");
   const addCanvas = document.createElement("canvas");
   canvasContainer.appendChild(addCanvas);
-  const canvas = document.querySelectorAll("canvas");
-  addCanvas.setAttribute("id", `canvas${canvas.length}`);
+  addCanvas.setAttribute("id", `canvas${layerNumber}`);
   addCanvas.setAttribute("width", "500");
   addCanvas.setAttribute("height", "500");
 
@@ -138,8 +135,7 @@ document.querySelector(".addLayer").onclick = function addLayer() {
   addLayer.classList.add("layerPanel__layers");
   layerPanel.prepend(addLayer);
   const layers = document.querySelectorAll(".layerPanel__layers");
-  /* addLayer.innerHTML = `Layer ${layers.length}`; */
-  addLayer.setAttribute("id", `${layers.length}`);
+  addLayer.setAttribute("id", `${layerNumber}`);
   addLayer.draggable = true;
 
   //ADD VISIBILITY TOGGLE TO NEW LAYER
@@ -150,7 +146,7 @@ document.querySelector(".addLayer").onclick = function addLayer() {
 
   //ADD LAYER NAME
   const addLayerName = document.createElement("p");
-  addLayerName.innerHTML = `Layer ${layers.length}`;
+  addLayerName.innerHTML = `Layer ${layerNumber}`;
   addLayer.appendChild(addLayerName);
 
   layers.forEach((layer) => {
@@ -167,9 +163,6 @@ document.querySelector(".addLayer").onclick = function addLayer() {
         const layerId = e.target.id;
         const targetCanvas = document.querySelector(`#canvas${layerId}`);
         targetCanvas.classList.add("selectedCanvas");
-
-        currentCanvas.style.pointerEvents = "none";
-        targetCanvas.style.pointerEvents = "all";
 
         const selectedCanvas = document.querySelector(".selectedCanvas");
         // SET DRAWING FUNCTION TO SELECTED CANVAS

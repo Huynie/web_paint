@@ -152,10 +152,6 @@ body {
     z-index: 999; }
     .menu .selected p {
       color: white; }
-  .menu .selectedCanvas {
-    /* pointer-events: all; */
-    background: transparent;
-    /* z-index: 999; */ }
 
 .canvasLayers {
   width: 500px;
@@ -177,6 +173,10 @@ body {
       width: 500px;
       height: 500px;
       pointer-events: none; }
+    .canvasLayers .canvasContainer .selectedCanvas {
+      pointer-events: all;
+      background: transparent;
+      /* z-index: 999; */ }
 
 @media only screen and (max-width: 600px) {
   /*  * {

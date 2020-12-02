@@ -203,11 +203,6 @@ body {
       color: rgb(255, 255, 255);
     }
   }
-  .selectedCanvas {
-    /* pointer-events: all; */
-    background: transparent;
-    /* z-index: 999; */
-  }
 }
 
 .canvasLayers {
@@ -232,6 +227,11 @@ body {
       width: 500px;
       height: 500px;
       pointer-events: none;
+    }
+    .selectedCanvas {
+      pointer-events: all;
+      background: transparent;
+      /* z-index: 999; */
     }
   }
 }
