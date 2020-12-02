@@ -117,15 +117,22 @@ body {
       display: flex;
       align-items: center;
       /* position: absolute; */ }
-      .menu .layerPanel__layers > input {
+      .menu .layerPanel__layers--visibility {
         margin: 0 15px;
         width: 20px;
         height: 20px; }
-      .menu .layerPanel__layers p {
+      .menu .layerPanel__layers--name {
+        height: auto;
+        width: min-content;
+        background: transparent;
+        border: none;
+        outline: none;
         font: normal normal 500 14px Roboto;
         letter-spacing: 0.2em;
         color: #535353;
         margin: 10px; }
+        .menu .layerPanel__layers--name:focus {
+          background: #a5a5a5; }
     .menu .layerPanel__indicator {
       background-color: #00bdf6;
       height: 1px;
@@ -175,8 +182,7 @@ body {
       pointer-events: none; }
     .canvasLayers .canvasContainer .selectedCanvas {
       pointer-events: all;
-      background: transparent;
-      /* z-index: 999; */ }
+      background: transparent; }
 
 @media only screen and (max-width: 600px) {
   /*  * {
@@ -211,5 +217,5 @@ body {
       width: 95vw;
       height: 70vh; }
       .canvasLayers .canvasContainer > canvas {
-        width: 95vw;
-        height: 70vh; } }
+        width: 500px;
+        height: 500px; } }

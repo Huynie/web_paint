@@ -156,16 +156,25 @@ body {
       align-items: center;
       /* position: absolute; */
 
-      & > input {
+      &--visibility {
         margin: 0 15px;
         width: 20px;
         height: 20px;
       }
-      p {
+      &--name {
+        height: auto;
+        width: min-content;
+        background: transparent;
+        border: none;
+        outline: none;
         font: normal normal 500 14px Roboto;
         letter-spacing: 0.2em;
         color: rgb(83, 83, 83);
         margin: 10px;
+
+        &:focus {
+          background: rgb(165, 165, 165);
+        }
       }
     }
     &__indicator {
@@ -231,7 +240,6 @@ body {
     .selectedCanvas {
       pointer-events: all;
       background: transparent;
-      /* z-index: 999; */
     }
   }
 }
@@ -282,8 +290,10 @@ body {
       width: 95vw;
       height: 70vh;
       & > canvas {
-        width: 95vw;
-        height: 70vh;
+        width: 500px;
+        height: 500px;
+        // width: 95vw;
+        // height: 70vh;
       }
     }
   }

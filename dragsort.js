@@ -73,8 +73,8 @@ const dragSort = () => {
     const layers = document.querySelectorAll('.layerPanel__layers:not(.dragging)');
 
     layers.forEach((layer) => {
-        layer.removeEventListener('dragstart', dragOver);
-        layer.removeEventListener('dragstart', dragEnd);
+        layer.removeEventListener('dragover', dragOver);
+        layer.removeEventListener('dragend', dragEnd);
         layer.removeEventListener('dragleave', dragLeave);
         layer.addEventListener('dragover', dragOver);
         layer.addEventListener('dragleave', dragLeave);
