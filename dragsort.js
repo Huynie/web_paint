@@ -69,26 +69,13 @@ const removeIndicator = () => {
         return;
     }
 }
-const dragSort = () => {
-    const layers = document.querySelectorAll('.layerPanel__layers:not(.dragging)');
-
-    layers.forEach((layer) => {
-        layer.removeEventListener('dragover', dragOver);
-        layer.removeEventListener('dragend', dragEnd);
-        layer.removeEventListener('dragleave', dragLeave);
-        layer.addEventListener('dragover', dragOver);
-        layer.addEventListener('dragleave', dragLeave);
-        layer.addEventListener('dragend', dragEnd);
-        layer.ondragstart = ()=>{
-            layer.classList.add('dragging');
-        };
-        
-    })
-}
-const cleanUpListeners = (selectedLayer) => {
-    selectedLayer.removeEventListener('dragstart', dragOver);
-    selectedLayer.removeEventListener('dragstart', dragLeave);
-    selectedLayer.removeEventListener('dragstart', dragEnd);
+const dragSort = (layer) => {
+    layer.addEventListener('dragover', dragOver);
+    layer.addEventListener('dragleave', dragLeave);
+    layer.addEventListener('dragend', dragEnd);
+    layer.ondragstart = ()=>{
+        layer.classList.add('dragging');
+    };
 }
 
-export {dragSort, cleanUpListeners};
+export {dragSort, dragLeave, dragOver, dragEnd};

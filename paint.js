@@ -1,4 +1,4 @@
-import  { dragSort, cleanUpListeners} from "./dragsort.js";
+import  { dragSort, dragLeave, dragOver, dragEnd} from "./dragsort.js";
 
 const firstCanvas = document.querySelector(".selectedCanvas");
 const firstLayer = document.querySelector(".selected");
@@ -33,7 +33,6 @@ const draw = (context, x1, y1, x2, y2) => {
   context.lineTo(x2, y2);
   context.stroke();
   /* context.closePath(); */
-  
 };
 
 // SET DRAWING FUNCTION TO SELECTED CANVAS
@@ -109,11 +108,20 @@ const layerRename = (e) => {
 }
 
 //INITIALIZE FIRST LAYER
-firstLayer.addEventListener("click", layerSelect);
 setDraw(firstCanvas);
+firstLayer.addEventListener("click", layerSelect);
 firstLayer.children[0].addEventListener('click', layerHide);
 firstLayer.children[1].addEventListener('click', layerRename);
+dragSort(firstLayer);
 
+const cleanUpListeners = (selectedLayer) => {
+  selectedLayer.removeEventListener('dragstart', dragOver);
+  selectedLayer.removeEventListener('dragstart', dragLeave);
+  selectedLayer.removeEventListener('dragstart', dragEnd);
+  selectedLayer.removeEventListener('click', layerSelect);
+  selectedLayer.children[0].removeEventListener('click', layerHide);
+  selectedLayer.children[1].removeEventListener('click', layerRename);
+}
 
 //HSL SLIDER
 Sliders.forEach((slider, idx) => {
@@ -164,9 +172,11 @@ document.querySelector('.deleteLayer').onclick = function deleteLayer() {
   currentCanvas.remove();
   currentLayer.remove();
 };
-//create layer and add event listener to them
+
+//CREATE NEW LAYER
 document.querySelector(".addLayer").onclick = function addLayer() {
   layerNumber++;
+
   //ADD NEW CANVAS
   const canvasContainer = document.querySelector(".canvasContainer");
   const addCanvas = document.createElement("canvas");
@@ -179,10 +189,10 @@ document.querySelector(".addLayer").onclick = function addLayer() {
   const layerPanel = document.querySelector(".layerPanel__layerList");
   const addLayer = document.createElement("div");
   addLayer.classList.add("layerPanel__layers");
-  layerPanel.prepend(addLayer);
-  const layers = document.querySelectorAll(".layerPanel__layers");
   addLayer.setAttribute("id", `${layerNumber}`);
   addLayer.draggable = true;
+  dragSort(addLayer);
+  addLayer.addEventListener('click', layerSelect);
 
   //ADD VISIBILITY TOGGLE TO NEW LAYER
   const addToggle = document.createElement("input");
@@ -199,6 +209,6 @@ document.querySelector(".addLayer").onclick = function addLayer() {
   addLayerName.addEventListener('click', layerRename);
   addLayer.appendChild(addLayerName);
 
-  addLayer.addEventListener('click', layerSelect);
-  dragSort();
+  layerPanel.prepend(addLayer);
+
 };
