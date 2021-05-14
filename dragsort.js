@@ -76,6 +76,14 @@ const dragSort = (layer) => {
     layer.ondragstart = ()=>{
         layer.classList.add('dragging');
     };
+
+    layer.addEventListener('dragover', dragOver);
+    layer.addEventListener('dragleave', dragLeave);
+    layer.addEventListener('dragend', dragEnd);
+    layer.ondragstart = ()=>{
+        layer.classList.add('dragging');
+    };
+
 }
 
 export {dragSort, dragLeave, dragOver, dragEnd};

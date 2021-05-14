@@ -96,10 +96,13 @@ const layerSelect = (e) => {
 
 const layerHide = (e) => {
   e.stopPropagation();
-  if (e.target.checked === true) {
-    firstCanvas.style.visibility = "hidden";
+  const targetLayer = e.target;
+  const targetLayerId = targetLayer.parentElement.id;
+  const targetCanvas = document.getElementById(`canvas${targetLayerId}`);
+  if (targetLayer.checked === true) {
+    targetCanvas.style.visibility = 'hidden';
   } else {
-    firstCanvas.style.visibility = "visible";
+    targetCanvas.style.visibility = "visible";
   }
 };
 
